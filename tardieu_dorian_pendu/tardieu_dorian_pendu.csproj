@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <Ressource Include="Ressource\Image\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Ressource\Ressource\**" />
+    <EmbeddedResource Remove="Ressource\Ressource\**" />
+    <None Remove="Ressource\Ressource\**" />
+    <Page Remove="Ressource\Ressource\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="istockphoto-157331686-170667a.jpg" />
+    <None Remove="Ressource\.png" />
+    <None Remove="Ressource\0.png" />
+    <None Remove="Ressource\1.png" />
+    <None Remove="Ressource\2.png" />
+    <None Remove="Ressource\3.png" />
+    <None Remove="Ressource\4.png" />
+    <None Remove="Ressource\5.png" />
+    <None Remove="Ressource\6.png" />
+    <None Remove="Ressource\7.png" />
+    <None Remove="tirage-fine-art-sur-Epson-Presentation-Mat-172g-imgp-28_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="istockphoto-157331686-170667a.jpg" />
+    <Resource Include="Ressource\0.png" />
+    <Resource Include="Ressource\1.png" />
+    <Resource Include="Ressource\2.png" />
+    <Resource Include="Ressource\3.png" />
+    <Resource Include="Ressource\4.png" />
+    <Resource Include="Ressource\5.png" />
+    <Resource Include="Ressource\6.png" />
+    <Resource Include="Ressource\7.png" />
+    <Resource Include="tirage-fine-art-sur-Epson-Presentation-Mat-172g-imgp-28_1.jpg" />
+  </ItemGroup>
+
+</Project>
