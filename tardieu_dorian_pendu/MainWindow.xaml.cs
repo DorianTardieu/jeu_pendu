@@ -169,7 +169,8 @@ namespace tardieu_dorian_pendu
                     time.Stop();
 
                     // Les lettres ne sont plus clicable si les conditions sont reunies
-                    
+
+
                     BTN_A.IsEnabled = false;
                     BTN_B.IsEnabled = false;
                     BTN_C.IsEnabled = false;
@@ -196,6 +197,8 @@ namespace tardieu_dorian_pendu
                     BTN_X.IsEnabled = false;
                     BTN_Y.IsEnabled = false;
                     BTN_Z.IsEnabled = false;
+                    
+                  
                 }
             }
         }
