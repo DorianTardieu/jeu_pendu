@@ -14,10 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-
-
-
-
 namespace tardieu_dorian_pendu
 {
     /// <summary>
@@ -25,180 +21,123 @@ namespace tardieu_dorian_pendu
     /// </summary>
     public partial class MainWindow : Window
     {
-        string word ;
-        string motcache;
-        string Result;
-        int vie = 7;
-        int minute = 0;
-        DispatcherTimer time;
+        readonly string motChoisi;
+        string motCache;
+
+        int nombreVie = 7;
+        int minutes = 0;
+        int secondes = 0;
+        readonly Random nombreAleatoire = new Random();
+        DispatcherTimer chrono;
+
         //Liste de mots du pendu
-        string[] listMots = new string[] { "moto", "lycee", "lettre", "pendu", "ordinateur", "internet", "programme", "pirate",
+        readonly string[] listeMots = new string[] { "moto", "lycee", "lettre", "pendu", "ordinateur", "internet", "programme", "pirate",
          "Diplomate","Pieds","Conceptuel","Lunettes","Jeune","Peur","Reflechir","Oncle","Embouchure","ecrire","Tournevis","Perdant",
          "Cou","Poivre","Haut","Adulte","Agrafe","Plastique","Funiculaire","Acier","ecorce","Chemisier","Phare","Saucisse",
-          "Plein","Entreprise","Soins","electrique","Labyrinthe","Caricature","Fertile","Titre","Rival","Orbite","Cactus","Pratique"};
-        Random rdm = new Random();
+         "Plein","Entreprise","Soins","electrique","Labyrinthe","Caricature","Fertile","Titre","Rival","Orbite","Cactus","Pratique"};
+
         public MainWindow()
         {
-
-
-          //DispatcherTimer dt = new DispatcherTimer();
-            InitializeComponent();
-            word = listMots[rdm.Next(listMots.Length)]; //Choisi aléatoirement un mot de la liste pour le jeu
-            word = word.ToUpper();
-            motcache = new string('*', word.Length);
-            TB_Display.Text = motcache;
             
+            InitializeComponent();
+            motChoisi = listeMots[nombreAleatoire.Next(listeMots.Length)]; //Choisi aléatoirement un mot de la liste pour le jeu
+            motChoisi = motChoisi.ToUpper();
+            motCache = new string('*', motChoisi.Length);
+            tbDisplay.Text = motCache;
         }
-
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-
-            time = new DispatcherTimer();
-
-            time.Interval = TimeSpan.FromSeconds(1);
-            time.Tick += dtTicker;
-            time.Interval = new TimeSpan(0, 0, 1);
-            time.Start();
+            chrono = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
+            chrono.Tick += Timer;
+            chrono.Interval = new TimeSpan(0, 0, 1);
+            chrono.Start();
         }
 
-        int increment =0;
-
-        public void dtTicker(object sender, EventArgs e)
+        private void BoutonFalse()
         {
-            increment++;
-            TimerLabel.Content = increment.ToString();
-            if (increment == 60)
+            foreach (var button in new[]
             {
-                minute++;
-                increment = 0;
+                btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH,
+                btnI, btnJ, btnK, btnL, btnM, btnN, btnO, btnP,
+                btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX,
+                btnY, btnZ
+            })
+            {
+                button.IsEnabled = false;
             }
-            TimerLabel.Content=(minute+":"+increment);
-        
         }
 
-
-
-
-        private void BTN_Click(object sender, RoutedEventArgs e) //Methode de tout les boutons Click
+        public void Timer(object sender, EventArgs e)
         {
-
-
-       
-
-
-            Button _btn = sender as Button;
-            string lettre = _btn.Content.ToString();
-            _btn.IsEnabled = false;        
-            int n = 0;
-            char l = Convert.ToChar(lettre);
-            time.Start();
-
-    
-
-
-
-            if (word.Contains(lettre))
+            secondes++;
+            TimerLabel.Content = secondes.ToString();
+            if (secondes == 60)
             {
-                foreach (var t in word)
-                {
+                minutes++;
+                secondes = 0;
+            }
+            TimerLabel.Content = (minutes + ":" + secondes);
+        }
 
-                    if (t == l)
+        private void BoutonClick(object sender, RoutedEventArgs e) //Methode de tout les boutons Click
+        {
+            int numSupprime = 0;
+            Button boutonChoisi = sender as Button;
+            string motEntier = boutonChoisi.Content.ToString();
+            char lettre = Convert.ToChar(motEntier);
+
+            boutonChoisi.IsEnabled = false;
+            //Lance le chronomètre
+            chrono.Start();
+
+            if (motChoisi.Contains(motEntier))
+            {
+                foreach (var position in motChoisi)
+                {
+                    if (position == lettre)
                     {
-                        motcache = motcache.Remove(n, 1).Insert(n, lettre);
-                        TB_Display.Text = motcache;
+
+                        motCache = motCache.Remove(numSupprime, 1).Insert(numSupprime, motEntier);
+                        tbDisplay.Text = motCache;
                     }
-                    n++;
-
+                    numSupprime++;
                 }
-                if (!motcache.Contains("*"))
+
+                if (!motCache.Contains("*"))
                 {
-                    Result = "gagné";
-                    LBL_vie.Content = Result;
-                    time.Stop();
-
-
-
+                    lblVie.Content = "Gagné";
+                    //Arrete le chronomètre
+                    chrono.Stop();
 
                     // Les lettres ne sont plus clicable si les conditions sont reunies
-
-                    BTN_A.IsEnabled = false;
-                    BTN_B.IsEnabled = false;
-                    BTN_C.IsEnabled = false;
-                    BTN_D.IsEnabled = false;
-                    BTN_E.IsEnabled = false;
-                    BTN_F.IsEnabled = false;
-                    BTN_G.IsEnabled = false;
-                    BTN_H.IsEnabled = false;
-                    BTN_I.IsEnabled = false;
-                    BTN_J.IsEnabled = false;
-                    BTN_K.IsEnabled = false;
-                    BTN_L.IsEnabled = false;
-                    BTN_M.IsEnabled = false;
-                    BTN_N.IsEnabled = false;
-                    BTN_O.IsEnabled = false;
-                    BTN_P.IsEnabled = false;
-                    BTN_Q.IsEnabled = false;
-                    BTN_R.IsEnabled = false;
-                    BTN_S.IsEnabled = false;
-                    BTN_T.IsEnabled = false;
-                    BTN_U.IsEnabled = false;
-                    BTN_V.IsEnabled = false;
-                    BTN_W.IsEnabled = false;
-                    BTN_X.IsEnabled = false;
-                    BTN_Y.IsEnabled = false;
-                    BTN_Z.IsEnabled = false;
+                    BoutonFalse();
                 }
             }
+
             else
-            {           
-                vie = vie - 1;           
-                LBL_vie.Content = ("Vie:" + vie);
+            {   //Supprime une vie et l'affiche a chaque fois 
+                nombreVie--;
+                lblVie.Content = ("Vie: " + nombreVie);
+
                 //Affichage des images du pendu
-                Uri uri = new Uri("Ressource/" + vie + ".png", UriKind.Relative);
-                Uri Image_Uri = uri;
-                Image_vie.Source = new BitmapImage(Image_Uri);
+                Uri imageUri = new Uri("Ressource/" + nombreVie + ".png", UriKind.Relative);
+                imgVie.Source = new BitmapImage(imageUri);
 
-
-                if (vie == 0)
+                if (nombreVie == 0)
                 {
-                    Result = "Perdu";
-                    LBL_vie.Content = Result;
-                    TB_Display.Text = word;
-                    time.Stop();
+
+                    lblVie.Content = "Perdu";
+                    //Affiche le mot en entier
+                    tbDisplay.Text = motChoisi;
+                    //Arrete le chronomètre
+                    chrono.Stop();
 
                     // Les lettres ne sont plus clicable si les conditions sont reunies
-
-
-                    BTN_A.IsEnabled = false;
-                    BTN_B.IsEnabled = false;
-                    BTN_C.IsEnabled = false;
-                    BTN_D.IsEnabled = false;
-                    BTN_E.IsEnabled = false;
-                    BTN_F.IsEnabled = false;
-                    BTN_G.IsEnabled = false;
-                    BTN_H.IsEnabled = false;
-                    BTN_I.IsEnabled = false;
-                    BTN_J.IsEnabled = false;
-                    BTN_K.IsEnabled = false;
-                    BTN_L.IsEnabled = false;
-                    BTN_M.IsEnabled = false;
-                    BTN_N.IsEnabled = false;
-                    BTN_O.IsEnabled = false;
-                    BTN_P.IsEnabled = false;
-                    BTN_Q.IsEnabled = false;
-                    BTN_R.IsEnabled = false;
-                    BTN_S.IsEnabled = false;
-                    BTN_T.IsEnabled = false;
-                    BTN_U.IsEnabled = false;
-                    BTN_V.IsEnabled = false;
-                    BTN_W.IsEnabled = false;
-                    BTN_X.IsEnabled = false;
-                    BTN_Y.IsEnabled = false;
-                    BTN_Z.IsEnabled = false;
-                    
-                  
+                    BoutonFalse();
                 }
             }
         }

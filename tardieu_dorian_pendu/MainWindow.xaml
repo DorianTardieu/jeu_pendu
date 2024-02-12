@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:tardieu_dorian_pendu"
         mc:Ignorable="d"
         Title="Pendu Dorian Tardieu" Height="450" Width="800" Loaded="Window_Loaded">
+
+    <!-- Définition d'une grille (Grid) pour organiser les éléments de l'interface utilisateur -->
     <Grid>
+        <!-- Définition des ressources partagées dans la grille -->
         <Grid.Resources>
+            <!-- Style appliqué à tous les boutons de la grille -->
             <Style TargetType="{x:Type Button}">
                 <Setter Property="Margin" Value="5"/>
                 <Setter Property="Background" Value="LightGray"/>
@@ -16,32 +20,36 @@
 
         </Grid.Resources>
 
+        <!-- Définition des lignes de la grille -->
         <Grid.RowDefinitions>
-
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-
         </Grid.RowDefinitions>
+
+
+        <!-- Première rangée de la grille -->
         <Grid Grid.Row="0" Background="GRAY">
             <Grid.ColumnDefinitions>
+                <!-- Définition des colonnes de la grille dans la première rangée -->
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-
-
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Row="0"   Background="#FFD0D0D0" BorderBrush="Black" BorderThickness="2" Name="TB_Display"  FontFamily="Arial" TextAlignment="Left" TextWrapping="Wrap" FontSize="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="100" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"  />
-            <Image Grid.Column="1" Grid.Row="0" Name="Image_vie" Source="/Ressource/7.png" ></Image>
-            <Label Grid.Row="0"  Grid.Column="2" Content="Vie:7" Height="85" Background="#FFD0D0D0" BorderBrush="Black" BorderThickness="2" Name="LBL_vie"  FontFamily="Arial" FontSize="48"  />
+            <!-- Zone de texte pour l'affichage avec une image et des labels -->
+
+            <TextBox Grid.Row="0"   Background="#FFD0D0D0" BorderBrush="Black" BorderThickness="2" Name="tbDisplay"  FontFamily="Arial" TextAlignment="Left" TextWrapping="Wrap" FontSize="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="100" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"  />
+            <Image Grid.Column="1" Grid.Row="0" Name="imgVie" Source="/Ressource/7.png" ></Image>
+            <Label Grid.Row="0"  Grid.Column="2" Content="Vie:7" Height="85" Background="#FFD0D0D0" BorderBrush="Black" BorderThickness="2" Name="lblVie"  FontFamily="Arial" FontSize="48"  />
             <Label Grid.Column="0" FontSize="40" x:Name="TimerLabel" Content="00:00" HorizontalContentAlignment="Right"></Label>
-
-
         </Grid>
+
+        <!-- Deuxième rangée de la grille avec un fond d'image -->
         <Grid Grid.Row="1">
             <Grid.Background>
                 <ImageBrush ImageSource="/tirage-fine-art-sur-Epson-Presentation-Mat-172g-imgp-28_1.jpg"/>
             </Grid.Background>
+            <!-- 12 colonnes des lettres -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -56,44 +64,43 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
+            <!-- 3 lignes des lettres -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="1" Name="BTN_A" Background="lightgray" Content="A" Click="BTN_Click" />
-            <Button Grid.Row="0" Grid.Column="2" Name="BTN_B" Background="lightgray" Content="B" Click="BTN_Click" />
-            <Button Grid.Row="0" Grid.Column="3" Name="BTN_C" Background="lightgray" Content="C" Click="BTN_Click" />
-            <Button Grid.Row="0" Grid.Column="4" Name="BTN_D" Background="lightgray" Content="D" Click="BTN_Click"/>
-            <Button Grid.Row="0" Grid.Column="5" Name="BTN_E" Background="lightgray" Content="E" Click="BTN_Click" />
-            <Button Grid.Row="0" Grid.Column="6" Name="BTN_F" Background="lightgray" Content="F"  Click="BTN_Click"/>
-            <Button Grid.Row="0" Grid.Column="7" Name="BTN_G" Background="lightgray" Content="G" Click="BTN_Click"/>
-            <Button Grid.Row="0" Grid.Column="8" Name="BTN_H" Background="lightgray" Content="H" Click="BTN_Click"/>
-            <Button Grid.Row="0" Grid.Column="9" Name="BTN_I" Background="lightgray" Content="I" Click="BTN_Click"/>
-            <Button Grid.Row="0" Grid.Column="10" Name="BTN_J" Background="lightgray" Content="J" Click="BTN_Click"/>
+            <!-- Définition de toute les letttres en tant que bouton-->
+            <Button Grid.Row="0" Grid.Column="1" Name="btnA" Background="lightgray" Content="A" Click="BoutonClick"/>
+            <Button Grid.Row="0" Grid.Column="2" Name="btnB" Background="lightgray" Content="B" Click="BoutonClick"/>
+            <Button Grid.Row="0" Grid.Column="3" Name="btnC" Background="lightgray" Content="C" Click="BoutonClick"/>
+            <Button Grid.Row="0" Grid.Column="4" Name="btnD" Background="lightgray" Content="D" Click="BoutonClick"/>
+            <Button Grid.Row="0" Grid.Column="5" Name="btnE" Background="lightgray" Content="E" Click="BoutonClick"/>
+            <Button Grid.Row="0" Grid.Column="6" Name="btnF" Background="lightgray" Content="F" Click="BoutonClick"/>
+            <Button Grid.Row="0" Grid.Column="7" Name="btnG" Background="lightgray" Content="G" Click="BoutonClick"/>
+            <Button Grid.Row="0" Grid.Column="8" Name="btnH" Background="lightgray" Content="H" Click="BoutonClick"/>
+            <Button Grid.Row="0" Grid.Column="9" Name="btnI" Background="lightgray" Content="I" Click="BoutonClick"/>
+            <Button Grid.Row="0" Grid.Column="10" Name="btnJ" Background="lightgray" Content="J" Click="BoutonClick"/>
 
-            <Button Grid.Row="1" Grid.Column="1" Name="BTN_K" Background="lightgray" Content="K" Click="BTN_Click"/>
-            <Button Grid.Row="1" Grid.Column="2" Name="BTN_L" Background="lightgray" Content="L" Click="BTN_Click" />
-            <Button Grid.Row="1" Grid.Column="3" Name="BTN_M" Background="lightgray" Content="M" Click="BTN_Click"/>
-            <Button Grid.Row="1" Grid.Column="4" Name="BTN_N" Background="lightgray" Content="N" Click="BTN_Click" />
-            <Button Grid.Row="1" Grid.Column="5" Name="BTN_O" Background="lightgray" Content="O" Click="BTN_Click"/>
-            <Button Grid.Row="1" Grid.Column="6" Name="BTN_P" Background="lightgray" Content="P" Click="BTN_Click"/>
-            <Button Grid.Row="1" Grid.Column="7" Name="BTN_Q" Background="lightgray" Content="Q" Click="BTN_Click"/>
-            <Button Grid.Row="1" Grid.Column="8" Name="BTN_R" Background="lightgray" Content="R" Click="BTN_Click"/>
-            <Button Grid.Row="1" Grid.Column="9" Name="BTN_S" Background="lightgray" Content="S" Click="BTN_Click"/>
-            <Button Grid.Row="1" Grid.Column="10" Name="BTN_T" Background="lightgray" Content="T" Click="BTN_Click"/>
+            <Button Grid.Row="1" Grid.Column="1" Name="btnK" Background="lightgray" Content="K" Click="BoutonClick"/>
+            <Button Grid.Row="1" Grid.Column="2" Name="btnL" Background="lightgray" Content="L" Click="BoutonClick"/>
+            <Button Grid.Row="1" Grid.Column="3" Name="btnM" Background="lightgray" Content="M" Click="BoutonClick"/>
+            <Button Grid.Row="1" Grid.Column="4" Name="btnN" Background="lightgray" Content="N" Click="BoutonClick"/>
+            <Button Grid.Row="1" Grid.Column="5" Name="btnO" Background="lightgray" Content="O" Click="BoutonClick"/>
+            <Button Grid.Row="1" Grid.Column="6" Name="btnP" Background="lightgray" Content="P" Click="BoutonClick"/>
+            <Button Grid.Row="1" Grid.Column="7" Name="btnQ" Background="lightgray" Content="Q" Click="BoutonClick"/>
+            <Button Grid.Row="1" Grid.Column="8" Name="btnR" Background="lightgray" Content="R" Click="BoutonClick"/>
+            <Button Grid.Row="1" Grid.Column="9" Name="btnS" Background="lightgray" Content="S" Click="BoutonClick"/>
+            <Button Grid.Row="1" Grid.Column="10" Name="btnT" Background="lightgray" Content="T" Click="BoutonClick"/>
 
-            <Button Grid.Row="2" Grid.Column="3" Name="BTN_U" Background="lightgray" Content="U"  Click="BTN_Click"/>
-            <Button Grid.Row="2" Grid.Column="4" Name="BTN_V" Background="lightgray" Content="V" Click="BTN_Click"  />
-            <Button Grid.Row="2" Grid.Column="5" Name="BTN_W" Background="lightgray" Content="W" Click="BTN_Click"/>
-            <Button Grid.Row="2" Grid.Column="6" Name="BTN_X" Background="lightgray" Content="X" Click="BTN_Click" />
-            <Button Grid.Row="2" Grid.Column="7" Name="BTN_Y" Background="lightgray" Content="Y" Click="BTN_Click" />
-            <Button Grid.Row="2" Grid.Column="8" Name="BTN_Z" Background="lightgray" Content="Z" Click="BTN_Click" />
-
-
+            <Button Grid.Row="2" Grid.Column="3" Name="btnU" Background="lightgray" Content="U" Click="BoutonClick"/>
+            <Button Grid.Row="2" Grid.Column="4" Name="btnV" Background="lightgray" Content="V" Click="BoutonClick"/>
+            <Button Grid.Row="2" Grid.Column="5" Name="btnW" Background="lightgray" Content="W" Click="BoutonClick"/>
+            <Button Grid.Row="2" Grid.Column="6" Name="btnX" Background="lightgray" Content="X" Click="BoutonClick"/>
+            <Button Grid.Row="2" Grid.Column="7" Name="btnY" Background="lightgray" Content="Y" Click="BoutonClick"/>
+            <Button Grid.Row="2" Grid.Column="8" Name="btnZ" Background="lightgray" Content="Z" Click="BoutonClick"/>
         </Grid>
-
     </Grid>
 </Window>
-

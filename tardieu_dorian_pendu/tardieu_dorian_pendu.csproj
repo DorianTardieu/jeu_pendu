@@ -28,6 +28,12 @@
     <None Remove="tirage-fine-art-sur-Epson-Presentation-Mat-172g-imgp-28_1.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.19.0.84025">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="istockphoto-157331686-170667a.jpg" />
     <Resource Include="Ressource\0.png" />
     <Resource Include="Ressource\1.png" />
