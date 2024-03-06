@@ -6,6 +6,50 @@ namespace TestUnit
 {
     public class UnitTest1
     {
+
+        [Test]
+        public void TestMotChoisiNotNullOrEmpty()
+        {
+            //Verifi que on a bien choisis un mot
+            MainWindow mainWindow = new MainWindow();
+            Assert.That(!string.IsNullOrEmpty(mainWindow.motChoisi));
+        }
+
+        [Test]
+        public void TestMotCacheInitializedWithAsterisks()
+        {
+            // Verifi la longueur du mot
+            MainWindow mainWindow = new MainWindow();
+            string expected = new string('*', mainWindow.motChoisi.Length);
+            Assert.AreEqual(expected, mainWindow.motCache);
+        }
+       [Test]
+        public void TestTimerTicks()
+        {
+            //Verifi que le timer est plus grand que 0
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Timer(null, null);
+            Assert.Greater(mainWindow.secondes, 0);
+        }
+
+        [Test]
+        public void TestBoutonClickCorrectGuess()
+        {
+            //Verifi l'algo avec un bon mot
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.motChoisi = "TEST";
+            mainWindow.tbDisplay.Text = "****";
+            mainWindow.BoutonClick(mainWindow.btnT, null);
+            Assert.AreEqual("T***", mainWindow.tbDisplay.Text);
+        }
+       [Test]
+        public void TestNombreVieInitializedWithSeven()
+        {
+            //Verifi le nombre de vies 
+            MainWindow mainWindow = new MainWindow();
+            Assert.AreEqual(7, mainWindow.nombreVie);
+        }
+
         [TestMethod]
         public void Constructor_InitializesVariablesCorrectly()
         {
@@ -15,13 +59,13 @@ namespace TestUnit
             // Assert
             Assert.IsNotNull(mainWindow.motChoisi); //Verifie que mot choisi n'est pas null
             Assert.AreEqual(7, mainWindow.nombreVie);//Verifie que le nombre de vie n'est pas null
-            Assert.AreEqual(0, mainWindow.minutes);//Verifie que le temps en minute est égale a 0 (pour le depart)
-            Assert.AreEqual(0, mainWindow.secondes);//Verifie que le temps en seconde est égale a 0 (pour le depart)
+            Assert.AreEqual(0, mainWindow.minutes);//Verifie que le temps en minute est Ã©gale a 0 (pour le depart)
+            Assert.AreEqual(0, mainWindow.secondes);//Verifie que le temps en seconde est Ã©gale a 0 (pour le depart)
             Assert.IsNotNull(mainWindow.nombreAleatoire);//Verifie que le nombre aleatoire pour choir dans la listes n'est pas null
             Assert.IsNotNull(mainWindow.listeMots);//Verifie que la listesmots n'est pas null
             Assert.IsNotNull(mainWindow.chrono);//Verifie que le chrono est pas null
-            Assert.IsNotNull(mainWindow.motCache);//Verifie que mot caché n'est pas null
-            Assert.IsFalse(string.IsNullOrEmpty(mainWindow.motCache));//Verifie que mot cache n'est pas encore trouvé
+            Assert.IsNotNull(mainWindow.motCache);//Verifie que mot cachÃ© n'est pas null
+            Assert.IsFalse(string.IsNullOrEmpty(mainWindow.motCache));//Verifie que mot cache n'est pas encore trouvÃ©
         }
 
         [TestMethod]
@@ -51,8 +95,8 @@ namespace TestUnit
             Assert.AreEqual("****", mainWindow.tbDisplay.Text);
             Assert.AreEqual(6, mainWindow.nombreVie);
         }
+        
 
-
-
+       
     }
 }
