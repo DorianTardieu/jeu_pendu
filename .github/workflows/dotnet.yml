@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '6.0.x'
 
       - name: Build
-        run: dotnet build tardieu_dorian_pendu/MainWindow.xaml.cs
+        run: dotnet build tardieu_dorian_pendu.sln
       
       - name: Generate Documentation
-        run: dotnet doc tardieu_dorian_pendu/MainWindow.xaml.cs -o documentation
+        run: dotnet doc tardieu_dorian_pendu.sln -o documentation
       
       - name: Commit Documentation
         run: 
