@@ -27,9 +27,9 @@ jobs:
         run: dotnet build tardieu_dorian_pendu.sln
       
       - name: Generate Documentation
-        run: dotnet doc /Documentation -o documentation
-      
-      - name: Commit /Documentation
+        run: dotnet doc tardieu_dorian_pendu -o documentation
+  
+      - name: Commit tardieu_dorian_pendu  
         run: 
           git add documentation
           git commit -m "Update documentation"
