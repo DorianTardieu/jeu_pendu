@@ -12,7 +12,7 @@ on:
 jobs:
   deploy:
     name: Deploy to staging
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -24,18 +24,16 @@ jobs:
           dotnet-version: '6.0.x'
 
       - name: Build
-        run: dotnet build tardieu_dorian_pendu/tardieu_dorian_pendu.csproj
+        run: dotnet build tardieu_dorian_pendu/MainWindow.xaml.cs
       
       - name: Generate Documentation
-        run: dotnet doc tardieu_dorian_pendu/tardieu_dorian_pendu.csproj -o documentation
+        run: dotnet doc tardieu_dorian_pendu/MainWindow.xaml.cs -o documentation
       
       - name: Commit Documentation
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+        run: 
           git add documentation
           git commit -m "Update documentation"
-      
+   
       - name: Push Changes
         uses: ad-m/github-push-action@v0.7.0
         with:
